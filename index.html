@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>MiniApp for IoT</title>
+
+<script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer>
+</script>
+
+    <script class="remove">
+        var respecConfig = {
+            specStatus: "CG-DRAFT",
+            copyrightStart: "2021",
+            edDraftURI: "https://w3c.github.io/miniapp-iot/",
+
+            shortName: "miniapp-iot",
+
+            editors: [{
+                name: "Qing An",
+                companyURL: "https://www.alibabagroup.com/en/global/home",
+                company: "Alibaba"
+              }, {
+                name: "Ping Shen",
+                companyURL: "https://www.alibabagroup.com/en/global/home",
+                company: "Alibaba"
+              }, {
+                name: "Yiran Liao",
+                companyURL: "https://www.alibabagroup.com/en/global/home",
+                company: "Alibaba"
+              }],
+           
+            
+            group: "cg/miniapps",
+            github: {
+              repoURL: "https://github.com/w3c/miniapp-iot",
+              branch: "main",
+            },
+            
+            localBiblio:  {
+              "MINIAPP-PACKAGING": {
+                  title: "MiniApp Packaging",
+                  href: "https://w3c.github.io/miniapp-packaging/"
+              },
+            },
+        };
+    </script>
+</head>
+  
+<body data-cite="HTML webidl">
+    <section id='abstract'>
+        <p>
+         This specification describes the use cases of MiniApp for IoT. Derived from the use cases, this specification defines the architecture of MiniApp for IoT. How to reuse and extend the <a href="https://w3c.github.io/miniapp-packaging/">MiniApp Packaging</a> and <a href="https://w3c.github.io/miniapp-lifecycle/">MiniApp Lifecycle</a> is specified. Also, several APIs are specified for MiniApp APIs for IoT.
+        </p>
+    </section>
+    <section id='sotd'>
+        
+    </section>
+
+    <section>
+      <h2>Background</h2>
+      <p>
+        MiniApp is a new format of mobile application, a hybrid solution which relies on Web technologies (especially CSS and Javascript) but also integrates with Native capabilities. Currently, MiniApps have mature deployments in cellphone and PC.
+      </p>
+      <p>
+        IoT device is becoming another carrier running MiniApps. MiniApp for IoT intends to enable interoperability across multiple IoT device platforms and IoT operating systems. Rather than having to deal with the difference across the multiple IoT device platforms and IoT operating systems, by introducing MiniApps for IoT, developers only need to focus on the application development on IoT device.
+      </p>
+      <p>
+        MiniApp for IoT shares similar <a href="https://www.w3.org/TR/mini-app-white-paper/#separate-the-view-layer-from-the-logic-layer">architecture</a> of MiniApp running on the cellphone and PC. But since IoT device has different hardware capabilities, MiniApp for IoT has its unique features.
+      </p>
+      <p>The purpose of this specification is to provide:</p>
+      <ul>
+        <li>a set of use cases of MiniApp for IoT</li>
+        <li>a definition of MiniApp for IoT Architecture</li>
+        <li>a definition of MiniApp Packaging for IoT</li>
+        <li>an overview of MiniApp APIs for IoT</li>
+      </ul>
+    </section>
+
+    <section class='informative'>
+      <h2>Use Cases</h2>
+      <p>
+        This section presents the use cases targeted by MiniApp for IoT and which are used to derive the MiniApp Packaging for IoT, MiniApp Lifecycle for IoT, and MiniApp APIs for IoT.
+      </p>
+      <p>
+        The following sections are not exhaustive. Rather they serve as illustrations, where MiniApp for IoT can provide additional benefit or enable new scenarios.
+      </p>
+      
+      <section>
+          <h2>Switch panel</h2>
+          <p>
+            The HVAC (heating, ventilating, and air-conditioning) applications and lighting applications are usually deployed in homes and buildings, to manage the indoor environment. A switch panel is used to control the HVAC application and lighting application.
+          </p>
+          <p>
+            <a href="#figure-miniapp-iot-use-case-switch-panel-screen-and-button">Figure 1</a> shows an example of HVAC application switch panel which has a screen and several physical buttons. In this case, by introducing MiniApp for IoT, the switch panel’s screen UI can be designed and developed using Web technologies, to display the HVAC information. For example, the target temperature value inputted by the physical and the measured real-time temperature value can be displayed.
+          </p>
+          <figure id="figure-miniapp-iot-use-case-switch-panel-screen-and-button">
+            <img src="images/HVAC_application_switch_panel_screen_and_button.png" alt="HVAC application switch panel having a screen and several physical buttons" />
+            <figcaption>HVAC application switch panel having a screen and several physical buttons</figcaption>
+          </figure>
+          
+          <p>
+            <a href="#figure-miniapp-iot-use-case-switch-panel-touch-screen">Figure 2</a> shows an example of HAVC and lighting application switch panel which has a touch screen. In this case, by introducing MiniApp for IoT, the switch panel’s touch screen UI can be designed and developed using Web technologies, to both display information and control the indoor HAVC and lighting application. For example, information like measured real-time temperature value, current date and time, etc., can be displayed in one MiniApp page. Besides, by clicking the virtual button on the touch screen, it can navigate to another MiniApp page to configure and control the HAV and lighting application, like setting the target temperature, turn on or off the lights, etc.
+          </p>
+          
+          <figure id="figure-miniapp-iot-use-case-switch-panel-touch-screen">
+            <img src="images/HVAC_application_switch_panel_touch_screen.png" alt="HVAC and lighting application switch panel having a touch screen" />
+            <figcaption>HVAC and lighting application switch panel having a touch screen</figcaption>
+          </figure>
+          
+      </section>
+
+      <section>
+          <h2>Gateway</h2>
+          <p>
+            In smart home scenarios, gateways are connected to local IoT devices such as sensors, cameras and home appliances through corresponding local communication protocols such as Wi-Fi, Bluetooth Mesh, Zigbee, etc. At the same time, gateways can be connected to the cloud through the Internet. Usually, the gateways do not have a screen.
+          </p>
+          <p>
+            In this case, by introducing MiniApp for IoT to gateway, the local device connection functionality (such as to establish connection between gateway and IoT device using Wi-Fi, Bluetooth Mesh or Zigbee) and cloud connection functionality (such as to establish connection between gateway and cloud using MQTT or HTTP) can be designed and developed using Web technologies.
+          </p>
+      </section>     
+
+      <section>
+          <h2>Smart Speaker</h2>
+          <p>
+            Smart speaker is a very popular appliance in smart home scenario. Users can interact with the smart speaker either through voice commands or through the touch screen on the smart speaker. Users can ask smart speakers to play music and video, to control the IoT devices at home, to do on online shopping through the touch screen.
+          </p>
+          <p>
+            <a href="#figure-miniapp-iot-use-case-smart-speaker-touch-screen">Figure 3</a> shows an example of smart speaker with a touch screen. In this case, by introducing MiniApp for IoT, the smart speaker’s touch screen UI can be designed and developed using Web technologies, to play music and video, to control the IoT devices at home, to do on online shopping.
+          </p>
+          <figure id="figure-miniapp-iot-use-case-smart-speaker-touch-screen">
+            <img src="images/Smart_speaker_touch_screen.png" alt="Smart speaker having a touch screen" />
+            <figcaption>Smart speaker having a touch screen</figcaption>
+          </figure>
+      </section>     
+      
+      <section>
+          <h2>Checkout Pad</h2>
+          <p>
+            A checkout pad is a machine deployed in the checkout desk in shopping store, café, and supermarket. On the checkout pad, customers can check the items and price, and also make the payment through face payment or barcode payment.
+          </p>
+          <p>
+            <a href="#figure-miniapp-iot-use-case-checkout-pad-screen-camera">Figure 4</a> shows an example of checkout pad with a screen and a camera. In this case, by introducing MiniApp for IoT, the checkout pad’s screen UI and camera can be developed using Web technologies, to display the items and price information, to display the barcode for customers to make the payment, and to scan the customer’s face to complete the face payment by the camera on the checkout pad.
+          </p>
+          <figure id="figure-miniapp-iot-use-case-checkout-pad-screen-camera">
+            <img src="images/Checkout_pad_screen_camera.png" alt="Checkout pad having a screen and a camera" />
+            <figcaption>Checkout pad having a screen and a camera</figcaption>
+          </figure>
+      </section>
+
+      <section>
+          <h2>Video conference terminal</h2>
+          <p>
+            A video conference terminal is used to set up video/audio conference call.
+          </p>
+          <p>
+            <a href="#figure-miniapp-iot-use-case-video-conference-terminal-touch-screen">Figure 5</a> shows an example of video conference terminal which has a touch screen. In this case, by introducing MiniApp for IoT, the video conference terminal’s touch screen UI can be designed and developed using Web technologies, for users to configure and establish the video/audio conference call.
+          </p>
+          <figure id="figure-miniapp-iot-use-case-video-conference-terminal-touch-screen">
+            <img src="images/Video_conference_terminal_touch_screen.png" alt="Video conference terminal having a touch screen" />
+            <figcaption>Video conference terminal having a touch screen</figcaption>
+          </figure>
+      </section>          
+      
+      <section>
+          <h2>Face recognition terminal for access control</h2>
+          <p>
+            A face recognition terminal for access control is used to provide employees with quick and convenient access to the workplace while preventing fraud.
+          </p>
+          <p>
+            <a href="#figure-miniapp-iot-use-case-face-recognition-terminal-screen-camera">Figure 6</a> shows an example of face recognition terminal for access control with a screen and a camera. In this case, by introducing MiniApp for IoT, the face recognition terminal’s screen UI and camera can be developed using Web technologies, to scan the employee’s face and display on the screen, and to complete the employee identification.
+          </p>
+          <figure id="figure-miniapp-iot-use-case-face-recognition-terminal-screen-camera">
+            <img src="images/Face_recognition_terminal_screen_camera.png" alt="Face recognition terminal for access control having a screen and a camera" />
+            <figcaption>Face recognition terminal for access control having a screen and a camera</figcaption>
+          </figure>
+      </section>    
+    </section>
+     
+    <section>
+      <h2>MiniApp for IoT Architecture</h2>
+      <p>
+        To address the use cases in Section 2, this section provides the MiniApp for IoT Architecture.
+      </p>
+      <p>
+        <a href="#figure-miniapp-iot-architecture">Figure 7</a> shows the MiniApp for IoT Architecture.
+      </p>
+      <figure id="figure-miniapp-iot-architecture">
+        <img src="images/MiniApp_iot_architecture.png" alt="MiniApp for IoT Architecture" />
+        <figcaption>MiniApp for IoT Architecture</figcaption>
+      </figure>
+      
+      <p>
+        Unlike MiniApps running on cellphone, which either run on top of a certain mobile App or run on top of mobile OS, MiniApp for IoT is running on top of IoT OS (operating system).
+      </p>
+      <p>
+        Similar as MiniApps running on cellphone, in MiniApp for IoT, the View layer is usually separated from the Logic layer. The View layer is responsible for rendering MiniApp pages, including Web rendering and Native rendering. The Logic layer is responsible for MiniApp’s event processing, API calling and lifecycle management.
+      </p>
+      <p>
+        MiniApp for IoT also have the Packaging and Lifecycle, which will be described in Section 4 and Section 5.
+      </p>
+      <p>
+        One of the key features of MiniApp for IoT is that it deals with many IoT device native functionalities, including but not limited to IoT communication protocols (like MQTT, Bluetooth Mesh) management, I/O for peripheral (like, UART, GPIO, I2C, SPI), and hardware functionalities (like ADC, DAC, hardware timer). The details will be described in Section 6.
+      </p>
+     </section>
+
+    <section>
+      <h2>MiniApp Packaging for IoT</h2>
+      <section>
+        <h2>MiniApp Packaging for IoT device with a screen</h2>
+        <p>
+            The use cases in Section 2.1, 2.3, 2.4, 2.5 and 2.6 show the MiniApp for IoT device with a screen, which is similar to the MiniApp running on cellphone or PC.
+        </p>
+        <p>
+            Therefore, the <a href="https://w3c.github.io/miniapp-packaging/">MiniApp Packaging</a> can be applied for MiniApp packaging for IoT device with a screen.
+        </p>
+      </section>
+      
+      <section>
+        <h2>MiniApp Packaging for IoT device without a screen</h2>
+        <p>
+            The use case in Section 2.2 shows the MiniApp for IoT device without a screen.
+        </p>
+        <p>
+            Therefore, a simplified MiniApp Packaging’s directory and file system is defined to be applied for IoT device without a screen. Specifically, the <a href="https://w3c.github.io/miniapp-packaging/#sec-miniapp-resources-css">CSS Resources</a> are not required.
+        </p>
+      </section>
+
+     </section>
+
+    <section>
+      <h2>MiniApp Lifecycle for IoT</h2>
+      <p>
+        <a href="https://w3c.github.io/miniapp-lifecycle/">MiniApp Lifecycle</a> needs to be extended for MiniApp lifecycle for IoT.
+      </p>
+      <p>
+        MiniApp for cellphone either runs in foreground or background. When running in foreground, the MiniApp is shown to users. When user chooses to close the MiniApp by clicking the close button on MiniApp, or go to the mobile phone’s home screen, the MiniApp switches to run in background, which means the MiniApp is suspended in the background.
+       </p>
+       <p>
+        However, in the case of MiniApp for IoT, when user chooses to close the MiniApp by clicking the close button on MiniApp, or go to the home screen, some MiniApps will still provide services to users and will not be suspended, like music playing. Therefore, a new lifecycle event and states need to be defined.
+       </p>
+       <section>
+        <h2>MiniApp Global Application Lifecycle for IoT</h2>
+        <p>
+            <a href="https://w3c.github.io/miniapp-lifecycle/#miniapp-global-application-lifecycle-events">MiniApp Global Application Lifecycle Events</a> is extended to include one new global application lifecycle event for MiniApp for IoT: 
+        </p>
+        <ul>
+          <li>
+            <p>MiniApp <dfn data-dfn-for="Document" data-export="" data-dfn-type=
+          "dfn">running permanently</dfn></p>
+          </li>
+        </ul>
+        
+        <p>
+            <a href="https://w3c.github.io/miniapp-lifecycle/#miniapp-global-application-lifecycle-states">MiniApp Global Application Lifecycle States</a> is extended to include one new global application lifecycle state for MiniApp for IoT: 
+        </p>
+        <dl>
+            <dt>
+                <dfn data-dfn-for="Document" data-export="" data-dfn-type="dfn">permanent</dfn>
+            </dt>
+            <dd>
+                Lifecycle state for MiniApp [=Document/running permanently=]. This means the MiniApp is running permanently, even though user clicks the close button on MiniApp, or go to the home screen.
+            </dd>
+        </dl>
+        <p>
+            Accordingly, <a href="https://w3c.github.io/miniapp-lifecycle/#miniapp-global-application-lifecycle-interface-and-callbacks">MiniApp Global Application Lifecycle interface and callbacks</a> needs to be extended.
+        </p>
+        <aside class="note">
+            <p>
+              TO BE ADDED: interface and callbacks extension.
+            </p>
+        </aside>
+        
+      </section>
+      
+      <section>
+        <h2>MiniApp Page Lifecycle for IoT</h2>
+        <p>
+            <a href="https://w3c.github.io/miniapp-lifecycle/#miniapp-page-lifecycle-events">MiniApp Page Lifecycle Events</a> is extended to include one new page lifecycle event for MiniApp for IoT: 
+        </p>
+        <ul>
+          <li>
+            <p>MiniApp <dfn data-dfn-for="Document" data-export="" data-dfn-type=
+          "dfn">page running permanently</dfn></p>
+          </li>
+        </ul>
+        
+        <p>
+            <a href="https://w3c.github.io/miniapp-lifecycle/#miniapp-page-lifecycle-states">MiniApp Page Lifecycle States</a> is extended to include one new page lifecycle state for MiniApp for IoT: page permanent.
+        </p>
+        <dl>
+            <dt>
+                <dfn data-dfn-for="Document" data-export="" data-dfn-type="dfn">page permanent</dfn>
+            </dt>
+            <dd>
+                Lifecycle state for MiniApp [=Document/page running permanently=]. This means the MiniApp page is running permanently, even though user clicks the close button on MiniApp, or go to the home screen.
+            </dd>
+        </dl>
+        
+        <p>
+            Accordingly, <a href="https://w3c.github.io/miniapp-lifecycle/#miniapp-page-lifecycle-interface-and-callbacks">MiniApp Page Lifecycle interface and callbacks</a> needs to be extended.
+        </p>
+        <aside class="note">
+            <p>
+              TO BE ADDED: interface and callbacks extension.
+            </p>
+        </aside>
+      </section>
+        
+     </section>
+    
+    <section>
+      <h2>MiniApp APIs for IoT</h2>
+      <p>
+        To interact with IoT device native capabilities, a set of APIs need to be defined for MiniApp for IoT.
+      </p>
+       <section>
+        <h2>MQTT API</h2>
+        <p>
+            The MQTT API provides interfaces that MiniApp for IoT can access, configure and control MQTT protocol in the underlying IoT device, so that the IoT device can transfer data with another entity (such as another device, or backend server) through MQTT protocol.
+        </p>
+        <aside class="note">
+            <p>
+              TO BE ADDED: Interfaces for MQTT API.
+            </p>
+        </aside>
+      </section>
+      
+      <section>
+        <h2>Bluetooth Mesh API</h2>
+        <p>
+            The Bluetooth Mesh API provides interfaces that MiniApp for IoT can access, configure and control Bluetooth Mesh connection in the underlying IoT device, so that the IoT device can establish Bluetooth Mesh connection with another device.
+        </p>
+        <aside class="note">
+            <p>
+              TO BE ADDED: Interfaces for Bluetooth Mesh API.
+            </p>
+        </aside>
+      </section>
+      
+      <section>
+        <h2>UART (universal asynchronous receiver-transmitter) API</h2>
+        <p>
+            The UART API provides interfaces that MiniApp for IoT can access UART embedded in the underlying devices.
+        </p>
+        <aside class="note">
+            <p>
+              TO BE ADDED: Interfaces for UART API.
+            </p>
+        </aside>
+      </section>
+      
+      <section>
+        <h2>SPI (serial peripheral interface) API</h2>
+        <p>
+            The SPI API provides interfaces that MiniApp for IoT can access devices via SPI interfaces embedded in the underlying devices.
+        </p>
+        <aside class="note">
+            <p>
+              TO BE ADDED: Interfaces for SPI API.
+            </p>
+        </aside>
+      </section>
+      
+      <section>
+        <h2>GPIO (general-purpose input/output) API</h2>
+        <p>
+            The GPIO API provides interfaces that MiniApp for IoT can access GPIO embedded in the underlying devices.
+        </p>
+        <aside class="note">
+            <p>
+              TO BE ADDED: Interfaces for GPIO API.
+            </p>
+        </aside>
+      </section>
+      
+       <section>
+        <h2>I2C (inter-integrated circuit) API</h2>
+        <p>
+            The I2C API provides interfaces that MiniApp for IoT can access devices via I2C interfaces embedded in the underlying devices.
+        </p>
+         <aside class="note">
+            <p>
+              TO BE ADDED: Interfaces for I2C API.
+            </p>
+        </aside>
+      </section>
+      
+      <section>
+        <h2>Device low power management API</h2>
+        <p>
+            The Device low power management API provides interfaces that MiniApp for IoT can access and configure low power management functionality in the underlying IoT device.
+        </p>
+        <aside class="note">
+            <p>
+              TO BE ADDED: Interfaces for low power management API.
+            </p>
+        </aside>
+      </section>
+      
+      <section>
+        <h2>ADC (analog-to-digital converter) API</h2>
+        <p>
+            The ADC API provides interfaces that MiniApp for IoT can access ADC embedded in the underlying devices.
+        </p>
+        <aside class="note">
+            <p>
+              TO BE ADDED: Interfaces for ADC API.
+            </p>
+        </aside>
+      </section>
+      
+      <section>
+        <h2>DAC (digital-to-analog converter) API</h2>
+        <p>
+            The DAC API provides interfaces that MiniApp for IoT can access DAC embedded in the underlying devices.
+        </p>
+        <aside class="note">
+            <p>
+              TO BE ADDED: Interfaces for DAC API.
+            </p>
+        </aside>
+      </section>
+      
+      <section>
+        <h2>Hardware timer API</h2>
+        <p>
+            The Hardware timer API provides interfaces that MiniApp for IoT can access Hardware timer embedded in the underlying devices.
+        </p>
+        <aside class="note">
+            <p>
+              TO BE ADDED: Interfaces for Hardware timer API.
+            </p>
+        </aside>
+      </section>
+      
+     </section>
+    
+     <section class='informative'>
+      <h2>Privacy and Security</h2>
+        <p>
+          TBD
+        </p>
+     </section>
+    
+</body>
+
+</html> 
