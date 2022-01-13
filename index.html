@@ -21,6 +21,10 @@
                 companyURL: "https://www.alibabagroup.com/en/global/home",
                 company: "Alibaba"
               }, {
+                name: "Martin Alvarez-Espinar",
+                companyURL: "https://www.huawei.com/",
+                company: "Huawei"
+              },{
                 name: "Ping Shen",
                 companyURL: "https://www.alibabagroup.com/en/global/home",
                 company: "Alibaba"
@@ -50,7 +54,7 @@
 <body data-cite="HTML webidl">
     <section id='abstract'>
         <p>
-         This specification describes the use cases of MiniApp for IoT. Derived from the use cases, this specification defines the architecture of MiniApp for IoT. How to reuse and extend the <a href="https://w3c.github.io/miniapp-packaging/">MiniApp Packaging</a> and <a href="https://w3c.github.io/miniapp-lifecycle/">MiniApp Lifecycle</a> is specified. Also, several APIs are specified for MiniApp APIs for IoT.
+         This specification describes the use cases of MiniApp applied to the <abbr title="Internet of Things">IoT</abbr> paradigm and the architecture of MiniApp that will cover these IoT scenarios. This document specifies how to reuse and extend the <a href="https://w3c.github.io/miniapp-packaging/">MiniApp Packaging</a> and <a href="https://w3c.github.io/miniapp-lifecycle/">MiniApp Lifecycle</a> and defines specific APIs for MiniApps in the IoT field.
         </p>
     </section>
     <section id='sotd'>
@@ -93,7 +97,7 @@
             The HVAC (heating, ventilating, and air-conditioning) applications and lighting applications are usually deployed in homes and buildings, to manage the indoor environment. A switch panel is used to control the HVAC application and lighting application.
           </p>
           <p>
-            <a href="#figure-miniapp-iot-use-case-switch-panel-screen-and-button">Figure 1</a> shows an example of HVAC application switch panel which has a screen and several physical buttons. In this case, by introducing MiniApp for IoT, the switch panel’s screen UI can be designed and developed using Web technologies, to display the HVAC information. For example, the target temperature value inputted by the physical and the measured real-time temperature value can be displayed.
+            [[[#figure-miniapp-iot-use-case-switch-panel-screen-and-button]]] shows an example of HVAC application switch panel which has a screen and several physical buttons. In this case, by introducing MiniApp for IoT, the switch panel’s screen UI can be designed and developed using Web technologies, to display the HVAC information. For example, the target temperature value inputted by the physical and the measured real-time temperature value can be displayed.
           </p>
           <figure id="figure-miniapp-iot-use-case-switch-panel-screen-and-button">
             <img src="images/HVAC_application_switch_panel_screen_and_button.png" alt="HVAC application switch panel having a screen and several physical buttons" />
@@ -101,7 +105,7 @@
           </figure>
           
           <p>
-            <a href="#figure-miniapp-iot-use-case-switch-panel-touch-screen">Figure 2</a> shows an example of HAVC and lighting application switch panel which has a touch screen. In this case, by introducing MiniApp for IoT, the switch panel’s touch screen UI can be designed and developed using Web technologies, to both display information and control the indoor HAVC and lighting application. For example, information like measured real-time temperature value, current date and time, etc., can be displayed in one MiniApp page. Besides, by clicking the virtual button on the touch screen, it can navigate to another MiniApp page to configure and control the HAV and lighting application, like setting the target temperature, turn on or off the lights, etc.
+            [[[#figure-miniapp-iot-use-case-switch-panel-touch-screen]]] shows an example of HAVC and lighting application switch panel which has a touch screen. In this case, by introducing MiniApp for IoT, the switch panel’s touch screen UI can be designed and developed using Web technologies, to both display information and control the indoor HAVC and lighting application. For example, information like measured real-time temperature value, current date and time, etc., can be displayed in one MiniApp page. Besides, by clicking the virtual button on the touch screen, it can navigate to another MiniApp page to configure and control the HAV and lighting application, like setting the target temperature, turn on or off the lights, etc.
           </p>
           
           <figure id="figure-miniapp-iot-use-case-switch-panel-touch-screen">
@@ -127,7 +131,7 @@
             Smart speaker is a very popular appliance in smart home scenario. Users can interact with the smart speaker either through voice commands or through the touch screen on the smart speaker. Users can ask smart speakers to play music and video, to control the IoT devices at home, to do on online shopping through the touch screen.
           </p>
           <p>
-            <a href="#figure-miniapp-iot-use-case-smart-speaker-touch-screen">Figure 3</a> shows an example of smart speaker with a touch screen. In this case, by introducing MiniApp for IoT, the smart speaker’s touch screen UI can be designed and developed using Web technologies, to play music and video, to control the IoT devices at home, to do on online shopping.
+            [[[#figure-miniapp-iot-use-case-smart-speaker-touch-screen]]] shows an example of smart speaker with a touch screen. In this case, by introducing MiniApp for IoT, the smart speaker’s touch screen UI can be designed and developed using Web technologies, to play music and video, to control the IoT devices at home, to do on online shopping.
           </p>
           <figure id="figure-miniapp-iot-use-case-smart-speaker-touch-screen">
             <img src="images/Smart_speaker_touch_screen.png" alt="Smart speaker having a touch screen" />
@@ -141,7 +145,7 @@
             A checkout pad is a machine deployed in the checkout desk in shopping store, café, and supermarket. On the checkout pad, customers can check the items and price, and also make the payment through face payment or barcode payment.
           </p>
           <p>
-            <a href="#figure-miniapp-iot-use-case-checkout-pad-screen-camera">Figure 4</a> shows an example of checkout pad with a screen and a camera. In this case, by introducing MiniApp for IoT, the checkout pad’s screen UI and camera can be developed using Web technologies, to display the items and price information, to display the barcode for customers to make the payment, and to scan the customer’s face to complete the face payment by the camera on the checkout pad.
+            [[[#figure-miniapp-iot-use-case-checkout-pad-screen-camera]]] shows an example of checkout pad with a screen and a camera. In this case, by introducing MiniApp for IoT, the checkout pad’s screen UI and camera can be developed using Web technologies, to display the items and price information, to display the barcode for customers to make the payment, and to scan the customer’s face to complete the face payment by the camera on the checkout pad.
           </p>
           <figure id="figure-miniapp-iot-use-case-checkout-pad-screen-camera">
             <img src="images/Checkout_pad_screen_camera.png" alt="Checkout pad having a screen and a camera" />
@@ -155,7 +159,7 @@
             A video conference terminal is used to set up video/audio conference call.
           </p>
           <p>
-            <a href="#figure-miniapp-iot-use-case-video-conference-terminal-touch-screen">Figure 5</a> shows an example of video conference terminal which has a touch screen. In this case, by introducing MiniApp for IoT, the video conference terminal’s touch screen UI can be designed and developed using Web technologies, for users to configure and establish the video/audio conference call.
+            [[[#figure-miniapp-iot-use-case-video-conference-terminal-touch-screen]]] shows an example of video conference terminal which has a touch screen. In this case, by introducing MiniApp for IoT, the video conference terminal’s touch screen UI can be designed and developed using Web technologies, for users to configure and establish the video/audio conference call.
           </p>
           <figure id="figure-miniapp-iot-use-case-video-conference-terminal-touch-screen">
             <img src="images/Video_conference_terminal_touch_screen.png" alt="Video conference terminal having a touch screen" />
@@ -169,13 +173,81 @@
             A face recognition terminal for access control is used to provide employees with quick and convenient access to the workplace while preventing fraud.
           </p>
           <p>
-            <a href="#figure-miniapp-iot-use-case-face-recognition-terminal-screen-camera">Figure 6</a> shows an example of face recognition terminal for access control with a screen and a camera. In this case, by introducing MiniApp for IoT, the face recognition terminal’s screen UI and camera can be developed using Web technologies, to scan the employee’s face and display on the screen, and to complete the employee identification.
+            [[[#figure-miniapp-iot-use-case-face-recognition-terminal-screen-camera]]] shows an example of face recognition terminal for access control with a screen and a camera. In this case, by introducing MiniApp for IoT, the face recognition terminal’s screen UI and camera can be developed using Web technologies, to scan the employee’s face and display on the screen, and to complete the employee identification.
           </p>
           <figure id="figure-miniapp-iot-use-case-face-recognition-terminal-screen-camera">
             <img src="images/Face_recognition_terminal_screen_camera.png" alt="Face recognition terminal for access control having a screen and a camera" />
             <figcaption>Face recognition terminal for access control having a screen and a camera</figcaption>
           </figure>
-      </section>    
+      </section>
+
+      <section>
+          <h2>Smart home appliances</h2>
+          <p>
+            Home appliances or domestic appliances are used to assist in household functions such as cooking (e.g., microwave ovens, dehumidifiers, toasters, coffeemakers, and bread machines), cleaning (e.g., washing machines and robotic vacuum cleaners), and food preservation (e.g., refrigerators and freezers). Web-enabled consumer electronics with embedded logic may include user interfaces that implement MiniApp for IoT to offer advanced automatic control and intuitive end-user feedback.
+          </p>
+          <p>
+            [[[#figure-miniapp-iot-use-case-smart-home-appliance]]] shows several cooking appliances controlled by a common logic unit that provides a user interface that could be implemented using a MiniApp for IoT.
+          </p>    
+          <figure id="figure-miniapp-iot-use-case-smart-home-appliance">
+            <img width="300" src="images/smart_home_appliance.jpg" alt="Display of an appliance in a kitchen" />
+            <figcaption>Home appliance user interface</figcaption>
+          </figure>
+      </section>
+
+      <section>
+          <h2>In-vehicle infotainment systems</h2>
+          <p>
+            In-vehicle infotainment systems provide audio, video, navigation, and driving aids, as well as gaming entertainment for vehicle passengers. These systems may be deployed in private (e.g., car, van, and coach) and public transport (e.g., boat, train, bus, and aircraft) as a service for passengers. 
+          </p>
+          <p>
+            [[[#figure-miniapp-iot-use-case-infotainment]]] shows an aircraft with infotainment displays in the back of the seats, allowing passengers to access in-flight information and interact with entertainment services. These systems, sometimes operating offline due to the limitations of the environment, could implement these infotainment services through MiniApps for IoT.  
+          </p>    
+          <figure id="figure-miniapp-iot-use-case-infotainment">
+            <img width="300" src="images/in-flight-entertainment.png" alt="In-flight entertainment displays on a passenger aircraft" />
+            <figcaption>In-flight entertainment displays</figcaption>
+          </figure>        
+      </section>
+
+      <section>
+          <h2>Public information displays</h2>
+          <p>
+            Users may find public displays in different contexts. Smart cities deploy informative kiosks with maps, transport information, and other public services available to citizens and tourists in the streets, as shown in [[[#figure-miniapp-iot-use-case-street-kiosk]]]. Similar informative screens may be found indoors in public facilities like airports, train stations, and shopping malls, sometimes allowing customers or users to interact with the system.
+          </p>
+          <p>
+            These public displays may include sensors and serve interactive services, applications, and widgets implemented through MiniApps for IoT. The MiniApp could access the sensors' information and offer user interaction to use its services.    
+          </p>    
+          <figure id="figure-miniapp-iot-use-case-street-kiosk">
+            <img width="300" src="images/linknyc-kiosk.png" alt="Touchscreen kiosk in the street" />
+            <figcaption>Touchscreen kiosk in the street (Photo by <a href="https://en.wikipedia.org/wiki/LinkNYC#/media/File:LinkNYC_kiosk_at_23rd_and_8th_4.jpg">Epicgenius</a>)</figcaption>
+          </figure> 
+      </section>
+
+      <section>
+          <h2>Industrial <abbr title="Human Machine Interface">HMI</abbr>s and control systems</h2>
+          <p>
+            Traditional industries connected to engineering, like manufacturing, usually have instrumentation and process control systems to control their  industrial processes. A wide range of HMI types and control systems are adapted to the sector and its specific environmental peculiarities. MiniApps for IoT with dedicated protocols to interact with actuators and read sensors could be run on robust and precise interactive systems like <abbr title="Supervisory Control And Data Acquisition">SCADA</abbr> and other ad-hoc industrial solutions.
+          </p>
+          <figure id="figure-miniapp-iot-use-case-street-kiosk">
+            <img width="300" src="images/scada.png" alt="Pressing a red button on an industrial SCADA" />
+            <figcaption>Industrial SCADA</figcaption>
+          </figure> 
+      </section>
+
+      <section>
+          <h2>Microcontroller kits</h2>
+          <p>
+            Microcontroller boards and kits, popularized by the open-hardware movement, offer <a href="https://en.wikipedia.org/wiki/Maker_culture">makers</a> and developers the possibility to quickly design and implement digital devices on simple IoT infrastructures using modules, shields, and other electric hardware components.  
+          </p>
+          <p>
+            These microcontrollers and boards run different operating systems with libraries and APIs to read and write input-output ports using different protocols (e.g., <abbr title="Inter-Integrated Circuit">I<sup>2</sup>C</abbr>, <abbr title="Serial Peripheral Interface">SPI</abbr>, and <abbr title="Universal Asynchronous Receiver-Transmitter">UART</abbr>). These input-output interfaces enable interaction with other electronic components and systems. MiniApp for IoT could be implemented in those systems, facilitating the acquisition, processing, and delivery of data and user interaction.
+          </p>
+          <figure id="figure-miniapp-iot-use-case-street-kiosk">
+            <img width="300" src="images/arduino.png" alt="Arduino board with leds" />
+            <figcaption>Microcontroller board</figcaption>
+          </figure>           
+      </section>
+      
     </section>
      
     <section>
@@ -184,7 +256,7 @@
         To address the use cases in Section 2, this section provides the MiniApp for IoT Architecture.
       </p>
       <p>
-        <a href="#figure-miniapp-iot-architecture">Figure 7</a> shows the MiniApp for IoT Architecture.
+        [[[#figure-miniapp-iot-architecture]]] shows the MiniApp for IoT Architecture.
       </p>
       <figure id="figure-miniapp-iot-architecture">
         <img src="images/MiniApp_iot_architecture.png" alt="MiniApp for IoT Architecture" />
