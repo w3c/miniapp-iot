@@ -335,15 +335,69 @@
                 Lifecycle state for MiniApp [=Document/running permanently=]. This means the MiniApp is running permanently, even though user clicks the close button on MiniApp, or go to the home screen.
             </dd>
         </dl>
-        <p>
+        <section data-dfn-for="GlobalState">
+          <h2>
+            <code>GlobalState</code> enum
+          </h2>
+          <p>MiniApp Global Application Lifecycle states for IoT are reflected in the API via the {{GlobalState}} enum.</p>
+            
+          <pre class="idl">
+          enum GlobalState {
+              "launched", "shown", "hidden", "error", "permanent"
+          };
+          </pre> 
+          
+         <p>
+            The "<dfn>permanent</dfn>" enum value represents the [=Document/permanent=]
+           global application lifecycle state.
+         </p>
+        </section>
+        
+        <section data-dfn-for="Global">
+          <h2>MiniApp Global Application Lifecycle interface and callbacks for IoT</h2>
+          <p>
             Accordingly, <a href="https://w3c.github.io/miniapp-lifecycle/#miniapp-global-application-lifecycle-interface-and-callbacks">MiniApp Global Application Lifecycle interface and callbacks</a> needs to be extended.
         </p>
-        <aside class="note">
+          <pre class="idl">
+           [Exposed=Window]
+           interface IoTGlobal: Global {
+            undefined getGlobalState (
+                GlobalState GlobalState,
+                GlobalPermanentCallback globalPermanentCallback
+            );
+           };
+          
+          callback GlobalPermanentCallback = undefined (
+          );
+
+         </pre>
+         
+         <section>
+            <h2>
+                `getGlobalState()` method
+            </h2>
             <p>
-              TO BE ADDED: interface and callbacks extension.
+                When <dfn>getGlobalState()</dfn> is invoked, the user agent MUST:
             </p>
-        </aside>
+            <ol class="algorithm">
+                <li>Request global application lifecycle state, passing globalPermanentCallback, as well as globalLaunchedCallback, globalShownCallback, globalHiddenCallback, and globalErrorCallback.
+                </li>
+                <li>Return `undefined`.
+                </li>
+            </ol>
+        </section>
         
+        <section>
+            <h2>
+                `globalPermanentCallback`
+            </h2>
+            <p>
+                If MiniApp enters the [=Document/permanent=] global application lifecycle state, invoke {{GlobalPermanentCallback}}.
+            </p>
+        </section>
+                   
+        </section>
+                
       </section>
       
       <section>
@@ -370,14 +424,74 @@
             </dd>
         </dl>
         
-        <p>
+        <section data-dfn-for="PageState">
+          <h2>
+            <code>PageState</code> enum
+          </h2>
+          <p>The MiniApp Page Lifecycle States are reflected in the API via the {{PageState}} enum.</p>
+            
+          <pre class="idl">
+          enum PageState {
+              "loaded", "ready", "shown", "hidden", "unloaded", "permanent"
+          };
+          </pre> 
+          
+         <p>
+            The "<dfn>permanent</dfn>" enum value represents the [=Document/page permanent=]
+            page lifecycle state.
+         </p>
+          
+        </section>
+                
+        <section data-dfn-for="Page">
+       
+        <h2>MiniApp Page Lifecycle interface and callbacks for IoT</h2>
+          
+          <p>
             Accordingly, <a href="https://w3c.github.io/miniapp-lifecycle/#miniapp-page-lifecycle-interface-and-callbacks">MiniApp Page Lifecycle interface and callbacks</a> needs to be extended.
         </p>
-        <aside class="note">
+
+          <pre class="idl">
+           [Exposed=Window]
+           interface IoTPage: Page {
+            undefined getPageState (
+                PageState pageState,
+                PagePermanentCallback pagePermanentCallback
+            );
+           };
+          
+          callback PagePermanentCallback = undefined (
+          );
+
+         </pre>
+         
+         <section>
+            <h2>
+                `getPageState()` method
+            </h2>
             <p>
-              TO BE ADDED: interface and callbacks extension.
+                When <dfn>getPageState()</dfn> is invoked, the user agent MUST:
             </p>
-        </aside>
+            <ol class="algorithm">
+                <li>Request page lifecycle state, passing pagePermanentCallback, as well as pageLoadedCallback, pageReadyCallback, pageShownCallback, pageHiddenCallback, and pageUnloadedCallback.
+                </li>
+                <li>Return `undefined`.
+                </li>
+            </ol>
+        </section>
+        
+                
+        <section>
+            <h2>
+                `pagePermanentCallback`
+            </h2>
+            <p>
+                If MiniApp page switches to be [=Document/page permanent=], invoke {{PagePermanentCallback}}.
+            </p>
+        </section>
+       
+       </section>
+
       </section>
         
      </section>
